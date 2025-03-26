@@ -71,3 +71,14 @@ footer {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.7);
 }
+
+@media (max-width: 500px) {
+  .city {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .city .time {
+    margin-top: 20px;
+  }
+}
