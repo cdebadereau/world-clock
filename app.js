@@ -14,6 +14,14 @@ function updateTime() {
   let parisTimezone = moment().tz("Europe/Paris");
   parisDate.innerHTML = parisTimezone.format("MMMM Do YYYY");
   parisTime.innerHTML = parisTimezone.format("h:mm:ss");
+
+  // Montreal
+  let montreal = document.querySelector("#montreal");
+  let montrealDate = montreal.querySelector(".date");
+  let montrealTime = montreal.querySelector(".time");
+  let montrealTimezone = moment().tz("America/Montreal");
+  montrealDate.innerHTML = montrealTimezone.format("MMMM Do YYYY");
+  montrealTime.innerHTML = montrealTimezone.format("h:mm:ss");
 }
 
 updateTime();
