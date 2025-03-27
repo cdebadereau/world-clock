@@ -36,6 +36,9 @@ setInterval(updateTime, 1000);
 // Update the UI with city timezone when selecting a new city
 function updateCity(event) {
   let cityTimezone = event.target.value;
+  if (cityTimezone === "current-location") {
+    cityTimezone = moment.tz.guess();
+  }
   let cityName = cityTimezone.replace("_", " ").split("/")[1];
   let cityTime = moment().tz(cityTimezone);
   let citiesElement = document.querySelector("#city");
