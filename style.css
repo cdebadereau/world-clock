@@ -74,6 +74,10 @@ footer {
 }
 
 @media (max-width: 500px) {
+  select {
+    width: 80%;
+  }
+
   .city {
     flex-direction: column;
     text-align: center;
