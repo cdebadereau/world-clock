@@ -1,3 +1,5 @@
+let intervalId;
+
 function updateTime() {
   // Los Angeles
   let losAngeles = document.querySelector("#los-angeles");
@@ -35,23 +37,31 @@ setInterval(updateTime, 1000);
 
 // Update the UI with city timezone when selecting a new city
 function updateCity(event) {
+  clearInterval(intervalId);
+
   let cityTimezone = event.target.value;
   if (cityTimezone === "current-location") {
     cityTimezone = moment.tz.guess();
   }
   let cityName = cityTimezone.replace("_", " ").split("/")[1];
-  let cityTime = moment().tz(cityTimezone);
   let citiesElement = document.querySelector("#city");
-  citiesElement.innerHTML = `
-        <div class="city">
-          <div>
-            <h2>${cityName}</h2>
-            <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
-          </div>
-          <div class="time">${cityTime.format("h:mm:ss")}</div>
-        </div>
-        <a href="/">Back to homepage</a>
-`;
+
+  function updateSelectedCityTime() {
+    let cityTime = moment().tz(cityTimezone);
+    citiesElement.innerHTML = `
+  <div class="city">
+  <div>
+  <h2>${cityName}</h2>
+  <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
+  </div>
+  <div class="time">${cityTime.format("h:mm:ss")}</div>
+  </div>
+  <a href="/">Back to homepage</a>
+  `;
+
+    updateSelectedCityTime();
+    intervalId = setInterval(updateSelectedCityTime, 1000);
+  }
 }
 
 let citiesSelectElement = document.querySelector("#cities");
