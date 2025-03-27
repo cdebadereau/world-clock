@@ -26,3 +26,23 @@ function updateTime() {
 
 updateTime();
 setInterval(updateTime, 1000);
+
+// Update the UI with city timezone when selecting a new city
+function updateCity(event) {
+  let cityTimezone = event.target.value;
+  let cityName = cityTimezone.replace("_", " ").split("/")[1];
+  let cityTime = moment().tz(cityTimezone);
+  let citiesElement = document.querySelector("#city");
+  citiesElement.innerHTML = `
+        <div class="city">
+          <div>
+            <h2>${cityName}</h2>
+            <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
+          </div>
+          <div class="time">${cityTime.format("h:mm:ss")}</div>
+        </div>
+`;
+}
+
+let citiesSelectElement = document.querySelector("#cities");
+citiesSelectElement.addEventListener("change", updateCity);
