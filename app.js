@@ -58,10 +58,9 @@ function updateCity(event) {
   </div>
   <a href="/">Back to homepage</a>
   `;
-
-    updateSelectedCityTime();
-    intervalId = setInterval(updateSelectedCityTime, 1000);
   }
+  updateSelectedCityTime();
+  intervalId = setInterval(updateSelectedCityTime, 1000);
 }
 
 let citiesSelectElement = document.querySelector("#cities");
